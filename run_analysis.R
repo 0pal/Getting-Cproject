@@ -6,7 +6,7 @@ dtest <- read.table("./UCI HAR Dataset/test/X_test.txt")
 data <- rbind(dtrain, dtest)
 
 ### part 1 of the Assignment completed
-features <- read.table("./UCI HAR Dataset/features.txt", colClasses = c("numeric", "character"))
+features <- read.table("."/UCI HAR Dataset/features.txt"/", colClasses = c("numeric", "character"))
 colnames(data) <- features[,2]
 
 ### now any column has a name
@@ -46,3 +46,4 @@ varnames <- colnames(data)
 
 tidydata <- melt(data, id=c("Activity", "Subject"), measure.vars = head(varnames, n=length(varnames)-2))
 tidydata <- dcast(tidydata, Activity+Subject~variable, mean)
+write.table(tidydata, file="tidydata.txt", row.names=FALSE)
